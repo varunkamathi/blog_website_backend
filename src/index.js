@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors'; // For handling Cross-Origin requests
 import dotenv from 'dotenv';
 import connectDB from '../src/db.js';
+import authRoutes from './routes/auth.routes.js'
 
 
 // Load environment variables from .env file
@@ -30,6 +31,7 @@ connectDB()
 // Import routes
 /*import authRoutes from './routes/auth.routes.js'; // Import the auth routes
 app.use('/api/users', authRoutes);*/
+app.use('/api/auth', authRoutes);
 
 
 
