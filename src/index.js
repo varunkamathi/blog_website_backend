@@ -3,6 +3,9 @@ import cors from 'cors'; // For handling Cross-Origin requests
 import dotenv from 'dotenv';
 import connectDB from '../src/db.js';
 import authRoutes from './routes/auth.routes.js'
+import cookieParser from 'cookie-parser';
+import userRoutes from './routes/user.routes.js'
+
 
 
 // Load environment variables from .env file
@@ -12,6 +15,7 @@ dotenv.config({
 
 // Initialize the app
 const app = express();
+app.use(cookieParser());
 
 // Middleware
 const corsOptions = {
@@ -32,6 +36,8 @@ connectDB()
 /*import authRoutes from './routes/auth.routes.js'; // Import the auth routes
 app.use('/api/users', authRoutes);*/
 app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
+
 
 
 app.use((err, req , res, next) => {
