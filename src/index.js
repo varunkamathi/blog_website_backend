@@ -5,6 +5,7 @@ import connectDB from '../src/db.js';
 import authRoutes from './routes/auth.routes.js'
 import cookieParser from 'cookie-parser';
 import userRoutes from './routes/user.routes.js'
+import postRoutes from './routes/post.routes.js'
 
 
 
@@ -37,6 +38,7 @@ connectDB()
 app.use('/api/users', authRoutes);*/
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
+app.use('api/post' , postRoutes);
 
 
 
