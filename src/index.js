@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import userRoutes from './routes/user.routes.js'
 import postRoutes from './routes/post.routes.js'
 import commentRoutes from './routes/comment.routes.js'
+import path from 'path';
 
 
 
@@ -14,6 +15,9 @@ import commentRoutes from './routes/comment.routes.js'
 dotenv.config({
     path : "./env"
 });
+
+const __drname = path.resolve();
+
 
 // Initialize the app
 const app = express();
@@ -55,8 +59,15 @@ app.use((err, req , res, next) => {
     });
 });
 
+app.use(express.static(path.join(__drname,'/client/dist')));
 
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__drname,'client','dist','index.html'));
+});
 
+app.get("/health",(req,res)=>{
+    return res.status(200).json("Health is ohk");
+})
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
